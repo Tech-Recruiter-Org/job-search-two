@@ -1,0 +1,11 @@
+* {
+  margin: 0px;
+}
+.job-card {
+  width: 300px;
+  border: 1px solid #979797;
+}
+
+.job-card p {
+  text-align: center;
+}
