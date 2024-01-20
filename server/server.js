@@ -6,6 +6,7 @@ import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import { register } from "./controllers/register.js";
 import { login } from "./controllers/login.js";
+import { getUserData } from "./controllers/getUserData.js";
 
 const app = express();
 
@@ -20,6 +21,7 @@ const PORT = process.env.PORT;
 const MONGO_URL = process.env.MONGO_URL;
 
 app.get("/", router);
+app.get("/userData", getUserData);
 
 app.post("/register", register);
 
