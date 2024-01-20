@@ -10,11 +10,13 @@
   /* align-items: center; */
   justify-content: center;
   margin-top: 20px;
+  margin-bottom: 0px;
 }
 
 .job-card {
   margin: 5px;
   border: 1px solid #979797;
+  min-height: 500px;
   max-height: 500px;
   overflow: scroll;
   padding: 5px;
@@ -42,8 +44,52 @@
 .homepage h1 {
   margin-top: 80px;
   margin-bottom: 20px;
+  font-size: 40px;
+}
+
+.homepage-p {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  font-size: 20px;
 }
 
 .search-div {
-  margin-top: 20px;
+  margin-bottom: 0px;
+}
+
+.search-bar {
+  margin-bottom: 15px;
+}
+
+.see-more-button {
+  font-size: 20px;
+  border: 1px solid #838383;
+  border-radius: 5px;
+  width: 200px;
+  height: 40px;
+}
+
+.see-more-button:hover {
+  background-color: #b5b5b5;
+  cursor: pointer;
+}
+
+.job-title {
+  margin-top: 5px;
+  margin-bottom: 0px;
+}
+
+select {
+  font-size: 20px;
+  margin: 0px 5px;
+}
+
+input {
+  font-size: 18px;
+  margin: 0px 5px;
+}
+
+.search-bar button {
+  font-size: 18px;
+  margin: 0px 5px;
 }

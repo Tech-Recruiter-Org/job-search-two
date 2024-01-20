@@ -1,14 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Navigate, Routes, Route } from 'react-router-dom';
-import { fetchData } from './Functions';
-import Login from './components/loginPage/Login';
-import HomePage from './HomePage';
-
-import { CssBaseline } from '@mui/material';
-import { ThemeProvider } from '@emotion/react';
-
-import React, { useEffect, useState } from 'react';
-import { BrowserRouter, Navigate, Routes, Route } from 'react-router-dom';
 import fetchData from './Functions';
 import Login from './components/loginPage/Login';
 import HomePage from './HomePage';
@@ -25,6 +16,7 @@ function App() {
   // create two variables to hold city and state, then pass as props
   let state;
   let newCity;
+  let isDone = false;
 
   const getSearch = async (e) => {
     const cityArr = city.split(', ');
@@ -36,7 +28,7 @@ function App() {
         type="submit"
         onClick={async (e) => await updateCount(e)}
       >
-        See more
+        Click for more jobs
       </button>
     );
     const newData = await fetchData(newCity, state, jobType);
@@ -82,10 +74,7 @@ function App() {
               showSeeMore={showSeeMore}
             />
           }
-        >
-          {' '}
-        </Route>
-        <Route path="/login" element={<Login />} />
+        ></Route>
       </Routes>
     </div>
   );

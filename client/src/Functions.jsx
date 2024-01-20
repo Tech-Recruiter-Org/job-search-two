@@ -1,9 +1,9 @@
-export const fetchData = async (count, city, state, jobType) => {
-  console.log('-------fetching data-----', city, state, jobType);
-  let tempJobsArr = [false];
-  let counter = 1;
+let tempJobsArr = [false];
+let counter = 1;
 
-  fetch('http://localhost:3000/')
+const fetchData = async (city, state, jobType, isDone) => {
+  counter += 6;
+  await fetch('http://localhost:3000/')
     .then((response) => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
