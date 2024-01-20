@@ -20,5 +20,5 @@ export const getJobData = async (req, res) => {
   }
 };
 
-console.log("hello");
-const getLocationData = (req, res) => {};
+// console.log("hello");
+// const getLocationData = (req, res) => {};
