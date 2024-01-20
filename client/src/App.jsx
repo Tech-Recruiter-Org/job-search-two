@@ -51,7 +51,7 @@ function App() {
       <CssBaseline />
       <Routes>
         <Route
-          path="/"
+          path="/home"
           element={
             <HomePage
               jobCards={jobCards}

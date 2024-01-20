@@ -4,7 +4,7 @@ import User from "../models/userModel.js";
 
 export const register = async (req, res) => {
   try {
-    console.log(req.body);
+    console.log("REGISTER FUNC CALLED");
     const { userName, password, city } = req.body;
 
     const salt = await bcrypt.genSalt();
