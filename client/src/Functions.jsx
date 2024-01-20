@@ -1,5 +1,7 @@
 export const fetchData = async (count, city, state, jobType) => {
   console.log('-------fetching data-----', city, state, jobType);
+  let tempJobsArr = [false];
+  let counter = 1;
 
   fetch('http://localhost:3000/')
     .then((response) => {
@@ -9,23 +11,20 @@ export const fetchData = async (count, city, state, jobType) => {
       return response.json();
     })
     .then((jobs) => {
-      console.log(jobs.data);
-      console.log(city, state, jobType);
-      const tempJobsArr = [];
-      for (let i = 0; i < 10; i++) {
-        // if (
-        //   jobs.data[i].job_city === city &&
-        //   jobs.data[i].job_state === state
-        //   // &&
-        //   // jobs.data[i].job_title == jobType
-        // ) {
-        tempJobsArr.push(jobs.data[i]);
+      for (let i = counter - 6; i < counter; i++) {
+        if (jobs.data[i] !== undefined) {
+          tempJobsArr.push(jobs.data[i]);
+        } else {
+          tempJobsArr[0] = 'true';
+        }
         // }
       }
       console.log(tempJobsArr);
-      return tempJobsArr;
     })
     .catch((error) => {
       console.error('Error fetching data:', error);
     });
+  return tempJobsArr;
 };
+
+export default fetchData;
