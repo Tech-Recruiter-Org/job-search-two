@@ -67,9 +67,7 @@ function App() {
               updateCount={updateCount}
             />
           }
-        >
-          {' '}
-        </Route>
+        ></Route>
         <Route path="/login" element={<Login />} />
       </Routes>
     </div>
