@@ -1,12 +1,6 @@
 export const fetchData = async (count, city, state, jobType) => {
   console.log('-------fetching data-----', city, state, jobType);
 
-  // const requestOptions = {
-  //   method: 'GET',
-  //   headers: { 'Content-Type': 'application/json' },
-  //   body: JSON.stringify({ city, state, jobType }),
-  // };
-
   fetch('http://localhost:3000/')
     .then((response) => {
       if (!response.ok) {
@@ -15,17 +9,20 @@ export const fetchData = async (count, city, state, jobType) => {
       return response.json();
     })
     .then((jobs) => {
-      console.log(jobs);
+      console.log(jobs.data);
+      console.log(city, state, jobType);
       const tempJobsArr = [];
-      for (let i = 0; i < count; i++) {
-        if (
-          jobs[i].job_city === city &&
-          jobs[i].job_state === state &&
-          jobs[i].job_title === jobType
-        ) {
-          tempJobsArr.push();
-        }
+      for (let i = 0; i < 10; i++) {
+        // if (
+        //   jobs.data[i].job_city === city &&
+        //   jobs.data[i].job_state === state
+        //   // &&
+        //   // jobs.data[i].job_title == jobType
+        // ) {
+        tempJobsArr.push(jobs.data[i]);
+        // }
       }
+      console.log(tempJobsArr);
       return tempJobsArr;
     })
     .catch((error) => {

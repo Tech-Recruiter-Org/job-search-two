@@ -8,10 +8,8 @@ import { CssBaseline } from '@mui/material';
 import { ThemeProvider } from '@emotion/react';
 
 function App() {
-  // const [authenticated, setAuthentication] = useState(false)
-  const [jobType, setJobType] = useState('Web Developer');
+  const [jobType, setJobType] = useState('Python developer');
   const [city, setCity] = useState('');
-  // const [jobListings, setJobListings] = useState([])
   const [jobCards, updateCards] = useState([]);
   const [count, setCount] = useState(15);
 
@@ -67,7 +65,9 @@ function App() {
               updateCount={updateCount}
             />
           }
-        ></Route>
+        >
+          {' '}
+        </Route>
         <Route path="/login" element={<Login />} />
       </Routes>
     </div>
