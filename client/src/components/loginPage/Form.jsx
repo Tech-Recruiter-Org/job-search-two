@@ -1,11 +1,19 @@
 import React, { useState } from "react";
 import { Box, TextField, Typography, Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import FlexBetween from "../FlexBetween";
 
 const Signup = () => {
+  const [pageType, setPageType] = useState("login");
+
+  const isLogin = pageType === "login";
+  const isRegister = pageType === "register";
+
   const [userName, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [city, setCity] = useState("");
+
+  const navigate = useNavigate();
 
   const userInformation = {
     userName,
@@ -13,7 +21,31 @@ const Signup = () => {
     city,
   };
 
+  const login = async (e) => {
+    try {
+      const loginResponse = await fetch("http://localhost:3000/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userInformation),
+      });
+
+      const existingUser = await loginResponse.json();
+
+      if (existingUser) {
+        navigate("/home");
+      }
+
+      console.log("success logging in", existingUser);
+    } catch (error) {
+      console.error("error logging in", error);
+    }
+  };
+
   const register = async (e) => {
+    navigate("/home");
+
     try {
       const savedUserResponse = await fetch("http://localhost:3000/register", {
         method: "POST",
@@ -24,14 +56,30 @@ const Signup = () => {
       });
 
       const savedUser = await savedUserResponse.json();
+
       console.log("success submitting", savedUser);
     } catch (error) {
       console.error("error submitting", error);
     }
   };
 
+  const handleFormSubmit = async () => {
+    console.log("LOGIN", isLogin);
+    console.log("REGISTER", isRegister);
+
+    if (isLogin) {
+      console.log("login called");
+      await login();
+    }
+
+    if (isRegister) {
+      console.log("register called");
+      await register();
+    }
+  };
+
   return (
-    <form onSubmit={register}>
+    <form>
       <Box
         m="10rem"
         display="flex"
@@ -44,7 +92,7 @@ const Signup = () => {
         }}
       >
         <Typography variant="h5" component="h2" mb="2rem">
-          Signup
+          {isLogin ? "LOGIN" : "SIGNUP"}
         </Typography>
         <Box mb="1rem">
           <TextField
@@ -66,18 +114,21 @@ const Signup = () => {
             }}
           />
         </Box>
-        <Box mb="1rem">
-          <TextField
-            id="outlined-basic"
-            label="City"
-            variant="outlined"
-            onChange={(event) => {
-              setCity(event.target.value);
-            }}
-          />
-        </Box>
+        {isLogin ? undefined : (
+          <Box mb="1rem">
+            <TextField
+              id="outlined-basic"
+              label="City"
+              variant="outlined"
+              onChange={(event) => {
+                setCity(event.target.value);
+              }}
+            />
+          </Box>
+        )}
+
         <Button
-          onClick={register}
+          onClick={handleFormSubmit}
           variant="contained"
           fullWidth
           type="submit"
@@ -89,8 +140,20 @@ const Signup = () => {
             // "&:hover": { color: theme.palette.primary.main },
           }}
         >
-          Register
+          {isLogin ? "LOGIN" : "SIGNUP"}
         </Button>
+        <Box>
+          <Typography
+            variant="h6"
+            component="h2"
+            mb="2rem"
+            onClick={() => setPageType(isLogin ? "register" : "login")}
+          >
+            {isLogin
+              ? "Don't have an account? Signup here"
+              : "Already have an account? Login here"}
+          </Typography>
+        </Box>
       </Box>
     </form>
   );
