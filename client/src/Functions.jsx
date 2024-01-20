@@ -1,7 +1,7 @@
 let tempJobsArr = [false];
 let counter = 1;
 
-const fetchData = async(city, state, jobType, isDone) => {
+export const fetchData = async(city, state, jobType, isDone) => {
   counter+=6
   await fetch("http://localhost:3000/")
     .then((response) => {
@@ -26,5 +26,33 @@ const fetchData = async(city, state, jobType, isDone) => {
     });
     return tempJobsArr
 };
+export const getUserInfo = async() =>{
+  console.log('in get user info')
+  let result;
+  const userObj = {
+    userName: "test8"
+  }
+  await fetch("http://localhost:3000/userData", {
+    method: 'POST',
+    headers:{
+      "content-type":"application/json"
+    } ,
+    body: JSON.stringify(userObj)
+  })
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    return response.json();
+  })
+  .then((data) => {
+    let result = data
+        console.log(data)
+  })
+  .catch((error) => {
+    console.error("Error retrieving user data:", error);
+  });
+  return data
+}
 
-export default fetchData
+// export default fetchData

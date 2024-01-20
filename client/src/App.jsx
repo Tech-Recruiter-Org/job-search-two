@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
-import fetchData from './Functions'
+import {fetchData, getUserInfo} from './Functions'
 import Login from "./components/loginPage/Login";
 import HomePage from "./HomePage";
 import './App.css'
 import { CssBaseline } from "@mui/material";
 import { ThemeProvider } from "@emotion/react";
+
 let showSeeMore = null;
 let done;
 function App() {
+
+  const userInfo = getUserInfo()
+  console.log(userInfo)
+
   const [jobType, setJobType] = useState("Python developer");
   const [city, setCity] = useState("");
   const [jobCards, updateCards] = useState([]);
