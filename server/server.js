@@ -5,6 +5,7 @@ import router from "./routes/routers.js";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import { register } from "./controllers/register.js";
+import { login } from "./controllers/login.js";
 
 const app = express();
 
@@ -21,6 +22,8 @@ const MONGO_URL = process.env.MONGO_URL;
 app.get("/", router);
 
 app.post("/register", register);
+
+app.post("/login", login);
 
 // create global error handler
 
