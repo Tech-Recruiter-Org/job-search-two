@@ -1,15 +1,16 @@
-import React from 'react';
+import React from "react";
 
-export default function Job({jobCards}) {
+export default function Job({ jobCards, data }) {
+  const {
+    employer_name,
+    job_title,
+    job_description,
+    job_city,
+    job_state,
+    job_posted_at_datetime_utc,
+  } = data;
 
-  for (let data of jobCards){
-    let employer_name;
-    let job_title = data_job_title;
-    let job_description;
-    let job_city;
-    let job_state;
-    let job_posted_at_datetime_utc;
-  }
+  console.log("in job", data);
 
   return (
     <div className="job-card">

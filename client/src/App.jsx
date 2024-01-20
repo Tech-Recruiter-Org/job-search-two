@@ -1,17 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { BrowserRouter, Navigate, Routes, Route } from 'react-router-dom';
-import { fetchData } from './Functions';
-import Login from './components/loginPage/Login';
-import HomePage from './HomePage';
+import React, { useEffect, useState } from "react";
+import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
+import { fetchData } from "./Functions";
+import Login from "./components/loginPage/Login";
+import HomePage from "./HomePage";
 
-import { CssBaseline } from '@mui/material';
-import { ThemeProvider } from '@emotion/react';
+import { CssBaseline } from "@mui/material";
+import { ThemeProvider } from "@emotion/react";
 
 function App() {
-  // const [authenticated, setAuthentication] = useState(false)
-  const [jobType, setJobType] = useState('Web Developer');
-  const [city, setCity] = useState('');
-  // const [jobListings, setJobListings] = useState([])
+  const [jobType, setJobType] = useState("Python developer");
+  const [city, setCity] = useState("");
   const [jobCards, updateCards] = useState([]);
   const [count, setCount] = useState(15);
 
@@ -20,7 +18,7 @@ function App() {
   let newCity;
 
   const getSearch = async (e) => {
-    const cityArr = city.split(', ');
+    const cityArr = city.split(", ");
     state = cityArr[1];
     newCity = cityArr[0];
     console.log(count, newCity, state, jobType);
@@ -68,7 +66,7 @@ function App() {
             />
           }
         >
-          {' '}
+          {" "}
         </Route>
         <Route path="/login" element={<Login />} />
       </Routes>

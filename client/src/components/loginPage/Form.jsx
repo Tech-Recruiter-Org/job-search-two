@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { Box, TextField, Typography, Button } from '@mui/material';
-import FlexBetween from '../FlexBetween';
+import React, { useState } from "react";
+import { Box, TextField, Typography, Button } from "@mui/material";
+import FlexBetween from "../FlexBetween";
 
 const Signup = () => {
-  const [userName, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [city, setCity] = useState('');
+  const [userName, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [city, setCity] = useState("");
 
   const userInformation = {
     userName,
@@ -15,18 +15,18 @@ const Signup = () => {
 
   const register = async (e) => {
     try {
-      const savedUserResponse = await fetch('http://localhost:3000/register', {
-        method: 'POST',
+      const savedUserResponse = await fetch("http://localhost:3000/register", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(userInformation),
       });
 
       const savedUser = await savedUserResponse.json();
-      console.log('success submitting', savedUser);
+      console.log("success submitting", savedUser);
     } catch (error) {
-      console.error('error submitting', error);
+      console.error("error submitting", error);
     }
   };
 
@@ -37,10 +37,10 @@ const Signup = () => {
         display="flex"
         width="12rem"
         sx={{
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          marginLeft: '20rem',
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          marginLeft: "20rem",
         }}
       >
         <Typography variant="h5" component="h2" mb="2rem">
@@ -82,11 +82,11 @@ const Signup = () => {
           fullWidth
           type="submit"
           sx={{
-            m: '2rem 0',
-            p: '1rem',
-            backgroundColor: theme.palette.primary.light,
-            color: theme.palette.background.alt,
-            '&:hover': { color: theme.palette.primary.main },
+            m: "2rem 0",
+            p: "1rem",
+            // backgroundColor: theme.palette.primary.light,
+            // color: theme.palette.background.alt,
+            // "&:hover": { color: theme.palette.primary.main },
           }}
         >
           Register

@@ -1,6 +1,6 @@
-import React from 'react';
-import Search from './components/Search';
-import JobDisplay from './components/JobDisplay';
+import React from "react";
+import Search from "./components/Search";
+import JobDisplay from "./components/JobDisplay";
 
 export default function HomePage({
   getSearch,
@@ -15,8 +15,17 @@ export default function HomePage({
   updateCount,
 }) {
   // check if the jobs are already showing. if they are, will show button
-    let showSeeMore;
-    if (jobCards) showSeeMore = (<button className = "see-more-button" type="submit" onClick={async(e) => await updateCount(e)}>See more</button>)
+  let showSeeMore;
+  if (jobCards)
+    showSeeMore = (
+      <button
+        className="see-more-button"
+        type="submit"
+        onClick={async (e) => await updateCount(e)}
+      >
+        See more
+      </button>
+    );
 
   return (
     <div>
