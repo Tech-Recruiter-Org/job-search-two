@@ -6,7 +6,7 @@
 .job-post-container {
   display: grid;
   grid-template-columns: 400px 400px 400px;
-  gap: 10px;
+  gap: 0px 20px;
   /* align-items: center; */
   justify-content: center;
   margin-top: 20px;

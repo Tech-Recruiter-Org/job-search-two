@@ -6,6 +6,7 @@ import HomePage from './HomePage';
 import './App.css';
 import { CssBaseline } from '@mui/material';
 import { ThemeProvider } from '@emotion/react';
+
 let showSeeMore = null;
 let done;
 function App() {
