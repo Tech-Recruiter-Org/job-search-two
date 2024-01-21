@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Box, TextField, Typography, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import FlexBetween from "../FlexBetween";
+import { useDispatch } from "react-redux";
+import { setLogin } from "../../state";
 
 const Signup = () => {
   const [pageType, setPageType] = useState("login");
@@ -14,11 +15,37 @@ const Signup = () => {
   const [city, setCity] = useState("");
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const userInformation = {
     userName,
     password,
     city,
+  };
+
+  const register = async (e) => {
+    try {
+      const savedUserResponse = await fetch("http://localhost:3000/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userInformation),
+      });
+
+      const savedUser = await savedUserResponse.json();
+
+      setUsername("");
+      setPassword("");
+      setCity("");
+
+      if (savedUser) {
+        setPageType("login");
+        console.log("success submitting", savedUser);
+      }
+    } catch (error) {
+      console.error("error submitting", error);
+    }
   };
 
   const login = async (e) => {
@@ -31,122 +58,108 @@ const Signup = () => {
         body: JSON.stringify(userInformation),
       });
 
-      const existingUser = await loginResponse.json();
+      const loggedIn = await loginResponse.json();
+      console.log("LOGGED IN", loggedIn);
 
-      if (existingUser) {
+      if (!loggedIn["error"]) {
+        dispatch(
+          setLogin({
+            user: loggedIn.user,
+          })
+        );
+
         navigate("/home");
+        console.log("success logging in", loggedIn);
       }
-
-      console.log("success logging in", existingUser);
     } catch (error) {
       console.error("error logging in", error);
     }
   };
 
-  const register = async (e) => {
-    navigate("/home");
-
-    try {
-      const savedUserResponse = await fetch("http://localhost:3000/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userInformation),
-      });
-
-      const savedUser = await savedUserResponse.json();
-
-      console.log("success submitting", savedUser);
-    } catch (error) {
-      console.error("error submitting", error);
-    }
-  };
-
-  const handleFormSubmit = async () => {
-    console.log("LOGIN", isLogin);
-    console.log("REGISTER", isRegister);
-
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    
     if (isLogin) {
-      console.log("login called");
       await login();
     }
 
     if (isRegister) {
-      console.log("register called");
       await register();
     }
   };
 
   return (
-    <form>
-      <Box
-        m="10rem"
-        display="flex"
-        width="12rem"
-        sx={{
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          marginLeft: "20rem",
-        }}
-      >
-        <Typography variant="h5" component="h2" mb="2rem">
-          {isLogin ? "LOGIN" : "SIGNUP"}
-        </Typography>
-        <Box mb="1rem">
-          <TextField
-            id="outlined-basic"
-            label="Username"
-            variant="outlined"
-            onChange={(event) => {
-              setUsername(event.target.value);
-            }}
-          />
-        </Box>
-        <Box mb="1rem">
-          <TextField
-            id="outlined-basic"
-            label="Password"
-            variant="outlined"
-            onChange={(event) => {
-              setPassword(event.target.value);
-            }}
-          />
-        </Box>
-        {isLogin ? undefined : (
-          <Box mb="1rem">
+    <Box
+      p="2rem"
+      sx={{
+        borderRadius: "3rem",
+      }}
+    >
+      <form>
+        <Box
+          width="12rem"
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+        >
+          <Box mb="-2rem">
             <TextField
               id="outlined-basic"
-              label="City"
+              label="Username"
               variant="outlined"
               onChange={(event) => {
-                setCity(event.target.value);
+                setUsername(event.target.value);
               }}
+              sx={{ width: "100%" }}
             />
           </Box>
-        )}
+          <Box mb="-2rem">
+            <TextField
+              id="outlined-basic"
+              label="Password"
+              variant="outlined"
+              onChange={(event) => {
+                setPassword(event.target.value);
+              }}
+              sx={{ width: "100%" }}
+            />
+          </Box>
+          {isLogin ? undefined : (
+            <Box mb="-2rem">
+              <TextField
+                id="outlined-basic"
+                label="City"
+                variant="outlined"
+                onChange={(event) => {
+                  setCity(event.target.value);
+                }}
+                sx={{ width: "100%" }}
+              />
+            </Box>
+          )}
 
-        <Button
-          onClick={handleFormSubmit}
-          variant="contained"
-          fullWidth
-          type="submit"
-          sx={{
-            m: "2rem 0",
-            p: "1rem",
-            // backgroundColor: theme.palette.primary.light,
-            // color: theme.palette.background.alt,
-            // "&:hover": { color: theme.palette.primary.main },
-          }}
-        >
-          {isLogin ? "LOGIN" : "SIGNUP"}
-        </Button>
-        <Box>
+          <Button
+            onClick={handleFormSubmit}
+            variant="contained"
+            fullWidth
+            type="submit"
+            sx={{
+              p: "1rem",
+              backgroundColor: "#1d50bd",
+            }}
+          >
+            {isLogin ? "LOGIN" : "SIGNUP"}
+          </Button>
           <Typography
-            variant="h6"
+            sx={{
+              fontSize: "15px",
+              "&:hover": {
+                color: "#1d50bd",
+                textDecoration: "underline",
+              },
+            }}
             component="h2"
-            mb="2rem"
+            mt="1rem"
             onClick={() => setPageType(isLogin ? "register" : "login")}
           >
             {isLogin
@@ -154,8 +167,8 @@ const Signup = () => {
               : "Already have an account? Login here"}
           </Typography>
         </Box>
-      </Box>
-    </form>
+      </form>
+    </Box>
   );
 };
 

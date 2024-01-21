@@ -20,6 +20,9 @@ const LoginPage = () => {
             variant="h3"
             // color={red}
             fontWeight="300"
+            sx={{
+              color: "#ed7447",
+            }}
           >
             Welcome to your professional community
           </Typography>
@@ -28,7 +31,7 @@ const LoginPage = () => {
             width="40vh"
             p="2rem"
             m="2rem 3rem"
-            // borderRadius="1.5rem"
+            borderRadius="1.5rem"
             backgroundColor={theme.palette.background.alt}
           >
             <Form />
@@ -38,7 +41,6 @@ const LoginPage = () => {
         <Box width="50%">
           <Box width="50px" height="50px" marginTop="5rem">
             <img
-              // borderRadius="1.5rem"
               width="800"
               height=""
               src="../assets/login-page.jpg"

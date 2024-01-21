@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import { BrowserRouter, Navigate, Routes, Route } from 'react-router-dom';
-import fetchData from './Functions';
-import Login from './components/loginPage/Login';
-import HomePage from './HomePage';
-import './App.css';
-import { CssBaseline } from '@mui/material';
-import { ThemeProvider } from '@emotion/react';
+import React, { useEffect, useState } from "react";
+import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
+import fetchData from "./Functions";
+import Login from "./components/loginPage/Login";
+import HomePage from "./HomePage";
+import "./App.css";
+import { CssBaseline } from "@mui/material";
 
 let showSeeMore = null;
 let done;
 function App() {
-  const [jobType, setJobType] = useState('Python developer');
-  const [city, setCity] = useState('');
+  const [jobType, setJobType] = useState("Python developer");
+  const [city, setCity] = useState("");
   const [jobCards, updateCards] = useState([]);
 
   // create two variables to hold city and state, then pass as props
@@ -20,7 +19,7 @@ function App() {
   let isDone = false;
 
   const getSearch = async (e) => {
-    const cityArr = city.split(', ');
+    const cityArr = city.split(", ");
     state = cityArr[1];
     newCity = cityArr[0];
     showSeeMore = (
@@ -42,12 +41,12 @@ function App() {
   };
 
   const updateCount = async (e) => {
-    console.log('-------clicked---------');
+    console.log("-------clicked---------");
     const newData = await fetchData(newCity, state, jobType);
     updateCards(newData);
 
     let done = newData[0];
-    if (done === 'true') {
+    if (done === "true") {
       showSeeMore = null;
     }
   };
@@ -60,6 +59,7 @@ function App() {
     <div>
       <CssBaseline />
       <Routes>
+        <Route path="/" element={<Login />} />
         <Route
           path="/home"
           element={

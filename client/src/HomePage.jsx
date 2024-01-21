@@ -1,6 +1,7 @@
-import React from 'react';
-import Search from './components/Search';
-import JobDisplay from './components/JobDisplay';
+import React from "react";
+import Search from "./components/Search";
+import JobDisplay from "./components/JobDisplay";
+import { useSelector } from "react-redux";
 
 export default function HomePage({
   getSearch,
@@ -15,12 +16,13 @@ export default function HomePage({
   updateCount,
   showSeeMore,
 }) {
-  // check if the jobs are already showing. if they are, will show button
-
+  const user = useSelector((state) => state.user);
+  
   return (
     <div className="homepage">
       <h1>Job Search Site </h1>
       <p className="homepage-p">Filter by JOB and LOCATION</p>
+      <p className="homepage-p">Welcome, {user.userName}! Here are some jobs in {user.city}.</p>
       <div className="search-div">
         <Search
           getSearch={getSearch}
