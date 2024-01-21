@@ -78,7 +78,7 @@ const Signup = () => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (isLogin) {
       await login();
     }
@@ -104,6 +104,7 @@ const Signup = () => {
         >
           <Box mb="-2rem">
             <TextField
+              error={Boolean(password.length > 3)}
               id="outlined-basic"
               label="Username"
               variant="outlined"
@@ -117,6 +118,7 @@ const Signup = () => {
             <TextField
               id="outlined-basic"
               label="Password"
+              type="password"
               variant="outlined"
               onChange={(event) => {
                 setPassword(event.target.value);

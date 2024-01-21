@@ -56,7 +56,7 @@ function App() {
   };
 
   return (
-    <div>
+    <div className="app-bg">
       <CssBaseline />
       <Routes>
         <Route path="/" element={<Login />} />
