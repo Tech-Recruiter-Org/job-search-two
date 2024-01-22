@@ -1,3 +1,6 @@
+import React from "react";
+import { useSelector } from "react-redux";
+
 const Search = ({ getSearch, setJob, city, updateCity }) => {
   return (
     <div className="search-bar">
@@ -12,7 +15,7 @@ const Search = ({ getSearch, setJob, city, updateCity }) => {
       <input
         className="search-bar"
         type="text"
-        placeholder="Austin, TX"
+        defaultValue={city}
         onChange={(e) => updateCity(e)}
       />
       <button

@@ -19,7 +19,7 @@ const fetchData = async (city, state, jobType, isDone) => {
         }
         // }
       }
-      console.log(tempJobsArr);
+      // console.log(tempJobsArr);
     })
     .catch((error) => {
       console.error('Error fetching data:', error);

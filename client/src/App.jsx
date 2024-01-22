@@ -5,10 +5,15 @@ import Login from "./components/loginPage/Login";
 import HomePage from "./HomePage";
 import "./App.css";
 import { CssBaseline } from "@mui/material";
+import { useSelector } from "react-redux";
 
 let showSeeMore = null;
-let done;
+
 function App() {
+  const user = useSelector((state) => state.user);
+  console.log("--------------", user);
+  // let startCity = user.city
+  // console.log(startCity)
   const [jobType, setJobType] = useState("Python developer");
   const [city, setCity] = useState("");
   const [jobCards, updateCards] = useState([]);
@@ -16,7 +21,6 @@ function App() {
   // create two variables to hold city and state, then pass as props
   let state;
   let newCity;
-  let isDone = false;
 
   const getSearch = async (e) => {
     const cityArr = city.split(", ");

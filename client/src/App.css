@@ -12,7 +12,6 @@
   display: grid;
   grid-template-columns: 400px 400px 400px;
   gap: 0px 20px;
-  /* align-items: center; */
   justify-content: center;
   margin-top: 20px;
   margin-bottom: 0px;
@@ -54,7 +53,7 @@
 
 .homepage-p {
   margin-top: 10px;
-  margin-bottom: 0px;
+  margin-bottom: 10px;
   font-size: 20px;
 }
 
