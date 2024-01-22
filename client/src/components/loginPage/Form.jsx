@@ -104,7 +104,6 @@ const Signup = () => {
         >
           <Box mb="-2rem">
             <TextField
-              error={Boolean(password.length > 3)}
               id="outlined-basic"
               label="Username"
               variant="outlined"
@@ -150,7 +149,7 @@ const Signup = () => {
               backgroundColor: "#1d50bd",
             }}
           >
-            {isLogin ? "LOGIN" : "SIGNUP"}
+            {isLogin ? "LOGIN" : "REGISTER"}
           </Button>
           <Typography
             sx={{
@@ -165,8 +164,8 @@ const Signup = () => {
             onClick={() => setPageType(isLogin ? "register" : "login")}
           >
             {isLogin
-              ? "Don't have an account? Signup here"
-              : "Already have an account? Login here"}
+              ? "Don't have an account? Register here."
+              : "Already have an account? Login here."}
           </Typography>
         </Box>
       </form>

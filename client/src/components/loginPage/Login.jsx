@@ -6,18 +6,27 @@ const LoginPage = () => {
   // const red = theme.palette.extra.red;
 
   return (
-    <Box>
+    <Box height="100vh">
       <Box
-        m="2rem auto"
+        display="flex"
         width="100%"
         padding="2rem 15%"
-        display="flex"
         justifyContent="space-between"
       >
-        <Box width="35%" marginLeft="5rem">
+        <Box
+          marginLeft="10%"
+          width="30%"
+          margin="5rem"
+          sx={{
+            backgroundColor: "white",
+            borderRadius: "5rem",
+          }}
+        >
           <Typography
+            p="-6rem rem"
+            mt="5rem"
             paddingLeft="3rem"
-            variant="h3"
+            variant="h4"
             // color={red}
             fontWeight="300"
             sx={{
@@ -26,11 +35,10 @@ const LoginPage = () => {
           >
             Welcome to your professional community
           </Typography>
-
           <Box
             width="40vh"
             p="2rem"
-            m="2rem 3rem"
+            m="-2rem 3rem"
             borderRadius="1.5rem"
             backgroundColor={theme.palette.background.alt}
           >

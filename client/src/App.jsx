@@ -8,8 +8,11 @@ import { CssBaseline } from "@mui/material";
 import { useSelector } from "react-redux";
 
 let showSeeMore = null;
+let fetched = false;
 
-function App() {
+
+const App = () => {
+
   const user = useSelector((state) => state.user);
   console.log("--------------", user);
   // let startCity = user.city
