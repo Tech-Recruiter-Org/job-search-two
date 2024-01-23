@@ -6,6 +6,7 @@ require('@testing-library/jest-dom');
 
 // const App = require('../../App.jsx');
 const Search = require('../Search.jsx');
+const jestConfig = require('../../../../jest.config.js');
 // const Login = require('../client/sr/components/loginPage/Login.jsx');
 
 // Use this to test React Testing Library
@@ -15,22 +16,15 @@ const Search = require('../Search.jsx');
 // test job search functionality retrieves job
 
 describe('Unit testing React components', () => {
-  // beforeAll(() => {
-  //   text = render(<Form {...props} />);
-  // });
+  const props = {
+    getSearch: jest.fn(),
+    setJob: 'Full Stack Developer',
+    city: 'Austin',
+    updateCIty: jest.fn(),
+  };
+
   it('should contain the heading "Select Job Type"', () => {
-    render(<Search />);
-    const heading = screen.getByText(/Select Job Type/);
-    expect(heading).toBeInTheDocument();
+    let text = render(<Search {...props} />);
+    expect(text.getByText('Select Job Type').toBeInTheDocument);
   });
-
-  // const props = {
-  //   userName: trevor,
-  //   password: password123,
-  //   city: dallas
-  // };
-
-  // test('Test Login Button Exists', () => {
-  //   expect(text.getByText('Login')).toBeInTheDocument();
-  // })
 });
