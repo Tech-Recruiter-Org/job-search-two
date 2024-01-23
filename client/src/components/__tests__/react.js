@@ -1,15 +1,12 @@
-import Reach from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
-import '@testing-library/jest-dom';
-import userEvent from '@testing-library/user-event';
-import regeneratorRuntime from 'regenerator-runtime';
+const React = require('react');
+const { render, screen, waitFor } = require('@testing-library/react');
+require('@testing-library/jest-dom');
+// const userEvent = require('@testing-library/user-event');
+// const regeneratorRuntime = require('regenerator-runtime');
 
-
-import App from '../../App.jsx';
-import Search from '../Search.jsx';
-import Login from '../client/sr/components/loginPage/Login.jsx';
-import { isAsyncThunkAction } from '@reduxjs/toolkit';
-import { Experimental_CssVarsProvider } from '@mui/material';
+// const App = require('../../App.jsx');
+const Search = require('../Search.jsx');
+// const Login = require('../client/sr/components/loginPage/Login.jsx');
 
 // Use this to test React Testing Library
 
@@ -18,25 +15,22 @@ import { Experimental_CssVarsProvider } from '@mui/material';
 // test job search functionality retrieves job
 
 describe('Unit testing React components', () => {
-  describe('Login Functionality', () => {
-    it('should contain the heading "Select Job Type"', () => {
-      render(<Search />);
-      const heading = screen.getByText(/Select Job Type/);
-      expect(heading).toBeInTheDocument();
-    });
-
-    // const props = {
-    //   userName: trevor,
-    //   password: password123,
-    //   city: dallas
-    // };
-
-    // beforeAll(() => {
-    //   text = render(<Form {...props} />);
-    // });
-
-    // test('Test Login Button Exists', () => {
-    //   expect(text.getByText('Login')).toBeInTheDocument();
-    // })
+  // beforeAll(() => {
+  //   text = render(<Form {...props} />);
+  // });
+  it('should contain the heading "Select Job Type"', () => {
+    render(<Search />);
+    const heading = screen.getByText(/Select Job Type/);
+    expect(heading).toBeInTheDocument();
   });
+
+  // const props = {
+  //   userName: trevor,
+  //   password: password123,
+  //   city: dallas
+  // };
+
+  // test('Test Login Button Exists', () => {
+  //   expect(text.getByText('Login')).toBeInTheDocument();
+  // })
 });
