@@ -1,2 +1,2 @@
-# job-search-app
+# Tech-Recruiter
 <!-- hello there -->
